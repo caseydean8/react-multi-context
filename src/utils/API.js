@@ -15,13 +15,15 @@ export default {
     return new Promise((resolve, reject) => {
       axios.get("https://randomuser.me/api/?results=15").then((res) => {
         const users = res.data.results;
+        console.log(users);
         const results = users.map((user) => {
           return {
             firstname: user.name.first,
             lastname: user.name.last,
             email: user.email,
             image: user.picture.large,
-            language: language
+            language: language,
+            userIndex: 0
           };
         });
         resolve(results);

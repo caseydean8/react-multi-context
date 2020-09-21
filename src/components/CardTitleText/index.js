@@ -4,10 +4,15 @@ import UserContext from "../../utils/userContext";
 function CardTitleText() {
   return (
     <UserContext.Consumer>
+      {/* console.log('card title text'); */}
       {(context) => (
-        <h2>{context.capitalizeFirstLetter(context.user.firstname) +
-          " " + context.capitalizeFirstLetter(context.user.lastname)}</h2>
-      )} 
+        // console.log(context)
+        <h2>
+          {context.capitalizeFirstLetter(context.userObject.firstname) +
+            " " +
+            context.capitalizeFirstLetter(context.userObject.lastname)}
+        </h2>
+      )}
     </UserContext.Consumer>
   );
 }

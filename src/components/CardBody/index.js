@@ -4,13 +4,13 @@ import UserContext from "../../utils/userContext";
 function CardBody() {
   return (
     <UserContext.Consumer>
-      {({ user }) => (
+      {({ userObject }) => (
         <div>
           <h4>
-          Favorite language: {user.language}
+          Favorite language: {userObject.language}
           </h4>
           <h4>
-          Email: {user.email}
+          Email: {userObject.email}
           </h4>
         </div>
       )}

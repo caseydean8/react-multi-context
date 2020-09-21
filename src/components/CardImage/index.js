@@ -4,10 +4,10 @@ import UserContext from "../../utils/userContext";
 function CardImg() {
   return (
     <UserContext.Consumer>
-      {({user}) => (
+      {({userObject}) => (
         <div>
-          <img className="card-img" src={user.image} alt="user thumbnail" />
-          {!user.image && <i className="fa fa-spinner fa-spin" aria-hidden="true" />}
+          <img className="card-img" src={userObject.image} alt="user thumbnail" />
+          {!userObject.image && <i className="fa fa-spinner fa-spin" aria-hidden="true" />}
         </div>
       )}
     </UserContext.Consumer>
