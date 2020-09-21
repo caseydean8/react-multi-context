@@ -10,13 +10,15 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      languages: [],
+      // languages: [],
       // user: {},
       users: [],
       userIndex: 0,
       capitalizeFirstLetter: this.capitalizeFirstLetter,
       handleBtnClick: this.handleUserBtnClick,
-      languageObject: {},
+      languageObject: {
+        languages: []
+      },
       userObject: {},
     };
   }
@@ -31,7 +33,7 @@ class Gallery extends Component {
         },
       });
       console.log(this.state);
-      console.log(this.state.languageObject);
+      console.log(this.state.languageObject.languages[1]);
       this.loadUsers(languages[0]);
     });
   }

@@ -11,7 +11,7 @@ const UserContext = React.createContext({
   // image: "",
   capitalizeFirstLetter: () => {},
   handleBtnClick: () => {},
-  languageObject: {},
+  languageObject: [],
   userObject: {}
 });
 

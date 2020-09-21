@@ -4,4 +4,6 @@ const languageContext = React.createContext({
   languages: []
 });
 
+// console.log(languageContext);
+
 export default languageContext;
