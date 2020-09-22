@@ -17,7 +17,8 @@ class Gallery extends Component {
       capitalizeFirstLetter: this.capitalizeFirstLetter,
       handleBtnClick: this.handleUserBtnClick,
       languageObject: {
-        languages: []
+        languages: [],
+        languageIndex: 0,
       },
       userObject: {},
     };
@@ -30,10 +31,11 @@ class Gallery extends Component {
       this.setState({
         languageObject: {
           languages: languages,
+          languageIndex: 0,
         },
       });
       console.log(this.state);
-      console.log(this.state.languageObject.languages[1]);
+      // console.log(this.state.languageObject.languages[1]);
       this.loadUsers(languages[0]);
     });
   }
@@ -49,7 +51,7 @@ class Gallery extends Component {
     this.setState({
       userObject: this.state.users[userIndex],
       userIndex: userIndex,
-    })
+    });
     // .then(() => console.log(this.state.user));
   }
 
@@ -63,14 +65,29 @@ class Gallery extends Component {
     });
   }
 
+  nextLang(langIndex) {
+    if (langIndex >= this.state.languageObject.languages.length) langIndex = 0;
+    this.setState({
+      languageObject: {
+        languages: this.state.languageObject.languages,
+        languageIndex: langIndex,
+      },
+    });
+    console.log(this.state.languageObject);
+    console.log(this.state.languageObject.languages[langIndex]);
+    this.loadUsers(this.state.languageObject.languages[langIndex]);
+  }
+
   handleUserBtnClick = (event) => {
     // Get the title of the clicked button
     console.log(this.state.userObject);
     const btnName = event.target.getAttribute("data-value");
-    console.log(btnName,  "clicked");
+    console.log(btnName, "clicked");
     if (btnName === "next") {
-      const userIndex = this.state.userIndex + 1;
-      this.nextUser(userIndex);
+      // const userIndex = this.state.userIndex + 1;
+      // this.nextUser(userIndex);
+      const langIndex = this.state.languageObject.languageIndex + 1
+      this.nextLang(langIndex);
     } else {
       const userIndex = this.state.userIndex - 1;
       this.previousUser(userIndex);
@@ -78,6 +95,7 @@ class Gallery extends Component {
   };
 
   loadUsers(language) {
+    console.log("language in load users", language);
     API.getUsersByLanguage(language)
       .then((users) => {
         console.log(users);

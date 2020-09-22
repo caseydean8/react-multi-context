@@ -1,7 +1,8 @@
 import React from 'react';
 
 const languageContext = React.createContext({
-  languages: []
+  languages: [],
+  languageIndex: 0
 });
 
 // console.log(languageContext);
