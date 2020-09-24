@@ -10,8 +10,6 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      // languages: [],
-      // user: {},
       users: [],
       userIndex: 0,
       capitalizeFirstLetter: this.capitalizeFirstLetter,
@@ -66,7 +64,7 @@ class Gallery extends Component {
     if (langIndex >= this.state.languageObject.languages.length) langIndex = 0;
     this.setState({
       languageObject: {
-        languages: this.state.languageObject.languages,
+        ...this.state.languageObject,
         languageIndex: langIndex,
       },
     });
@@ -74,12 +72,11 @@ class Gallery extends Component {
   }
 
   prevLang(langIndex) {
-    if (langIndex < 0) {
+    if (langIndex < 0)
       langIndex = this.state.languageObject.languages.length - 1;
-    }
     this.setState({
       languageObject: {
-        languages: this.state.languageObject.languages,
+        ...this.state.languageObject,
         languageIndex: langIndex,
       },
     });
