@@ -12,11 +12,11 @@ function LanguageSelector() {
         <div>
           <h3 className="text-center">Select the user language below:</h3>
           <div className="language-btn">
-            <CardBtn style={{ opacity: true ? 1 : 0 }} data-value="back" />
+            <CardBtn style={{ opacity: true ? 1 : 0 }} data-value="lang back" />
             <span className="text-center">
               {context.languages[context.languageIndex]}
             </span>
-            <CardBtn style={{ opacity: true ? 1 : 0 }} data-value="next" />
+            <CardBtn style={{ opacity: true ? 1 : 0 }} data-value="lang next" />
           </div>
         </div>
       )}
