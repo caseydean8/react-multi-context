@@ -2,7 +2,6 @@ import React from "react";
 import CardBtn from "../CardBtn";
 import "./style.css";
 import languageContext from "../../utils/languageContext";
-console.log(languageContext.Consumer);
 
 function LanguageSelector() {
   return (

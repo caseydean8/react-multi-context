@@ -34,8 +34,6 @@ class Gallery extends Component {
           languageIndex: 0,
         },
       });
-      console.log(this.state);
-      // console.log(this.state.languageObject.languages[1]);
       this.loadUsers(languages[0]);
     });
   }
@@ -52,7 +50,6 @@ class Gallery extends Component {
       userObject: this.state.users[userIndex],
       userIndex: userIndex,
     });
-    // .then(() => console.log(this.state.user));
   }
 
   previousUser(userIndex) {
@@ -73,27 +70,25 @@ class Gallery extends Component {
         languageIndex: langIndex,
       },
     });
-    console.log(this.state.languageObject);
-    console.log(this.state.languageObject.languages[langIndex]);
     this.loadUsers(this.state.languageObject.languages[langIndex]);
   }
 
   prevLang(langIndex) {
-    if (langIndex < 0)
+    if (langIndex < 0) {
       langIndex = this.state.languageObject.languages.length - 1;
-      console.log('lang index', langIndex);
+    }
     this.setState({
-      languages: this.state.languageObject.languages,
-      languageIndex: langIndex,
+      languageObject: {
+        languages: this.state.languageObject.languages,
+        languageIndex: langIndex,
+      },
     });
     this.loadUsers(this.state.languageObject.languages[langIndex]);
   }
 
   handleUserBtnClick = (event) => {
     // Get the title of the clicked button
-    console.log(this.state.userObject);
     const btnName = event.target.getAttribute("data-value");
-    console.log(btnName, "clicked");
     let userIndex, langIndex;
     switch (btnName) {
       case "next":
@@ -104,7 +99,7 @@ class Gallery extends Component {
         langIndex = this.state.languageObject.languageIndex + 1;
         this.nextLang(langIndex);
         break;
-        case "lang back":
+      case "lang back":
         langIndex = this.state.languageObject.languageIndex - 1;
         this.prevLang(langIndex);
         break;
@@ -112,29 +107,16 @@ class Gallery extends Component {
         userIndex = this.state.userIndex - 1;
         this.previousUser(userIndex);
     }
-    // if (btnName === "next") {
-    //   // const userIndex = this.state.userIndex + 1;
-    //   // this.nextUser(userIndex);
-    //   const langIndex = this.state.languageObject.languageIndex + 1;
-    //   this.nextLang(langIndex);
-    // } else {
-    //   const userIndex = this.state.userIndex - 1;
-    //   this.previousUser(userIndex);
-    // }
   };
 
   loadUsers(language) {
-    console.log("language in load users", language);
     API.getUsersByLanguage(language)
       .then((users) => {
-        console.log(users);
         return this.setState({
           users: users,
-          // user: users[0],
           userObject: users[0],
         });
       })
-      .then(() => console.log(this.state.userObject))
       .catch((err) => console.log(err));
   }
 
